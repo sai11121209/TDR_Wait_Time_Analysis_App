@@ -5,6 +5,7 @@ import csv
 datas = []
 day = 1
 n = 12
+
 for year in range(2015,2020):
     url = 'https://dwait.net/index.php/kako/kakotdr?month='+str(year)+'-01'
 
@@ -39,9 +40,9 @@ for year in range(2015,2020):
                         else:  
                             if len(copyb.findAll('a',class_='acal')[l].find('div',class_='rank').text) != 1:
                                 landmax = int(copyb.findAll('a',class_='acal')[l].find('div',class_='rank').text)
-                                print(landmax)
                             else:
                                 landmax = 45
+                        print(landmax,end='')
                     if l == 1:
                         if len(copyb.findAll('a',class_='acal')[l].findAll('div',class_='rank')) == 2:
                             for m in range(2):
@@ -53,10 +54,12 @@ for year in range(2015,2020):
                                 seamax = int(copyb.findAll('a',class_='acal')[l].find('div',class_='rank').text)
                             else:
                                 seamax = 45
+                        print(landmax,end='')
                 datas.append([str(year),str(i+1),str(day),str(landmax),str(seamax)])
                 day += 1
         copy = soup
         day = 1
+        print('\n'+str(year)+'_'+str(i+1)+'scraping:success')
 
 print(datas)
 
@@ -66,4 +69,5 @@ with open('tdl_tds.csv', 'w', newline="") as f:
     writer.writerow(header)
     for data in datas:
         writer.writerow(data)
+print('csv_write:success') 
     
