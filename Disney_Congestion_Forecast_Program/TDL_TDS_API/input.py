@@ -1,5 +1,6 @@
 import TDL_TDS_CLASS as TTC
 import requests as rq
+import csv
 
 url = 'https://api.castel.jp/disney/facility?language=ja-JP&f_type=1'
 data = rq.get(url).json()
@@ -21,4 +22,8 @@ for data in datas:
     upd_original = data['upd_original']
     facility = TTC.facilities(id,park,area_id,area_name,name,standby_time,operating_status,operating_status_cd,lat,lng,image_url,link_url,upd_original)
     facilitys.append(facility)
-print(facilitys)
+
+with open('stanby_data.csv', 'w',newline='') as f:
+    writer = csv.writer(f)
+    for facility in facilitys:
+        writer.writerow(str(facility.standby_time))
