@@ -23,7 +23,7 @@ for data in datas:
     facility = TTC.facilities(id,park,area_id,area_name,name,standby_time,operating_status,operating_status_cd,lat,lng,image_url,link_url,upd_original)
     facilitys.append(facility)
 
-with open('stanby_data.csv', 'w',newline='') as f:
+with open('stanby_data.csv','w',newline='') as f:
     writer = csv.writer(f)
     for facility in facilitys:
-        writer.writerow(str(facility.standby_time))
+        writer.writerow([facility.id,facility.standby_time])
