@@ -23,6 +23,7 @@ while(1):
             Time_M = int(time.strftime("%M",Timedata))
             Time_S = int(time.strftime("%S",Timedata))
             if Time_M % waittime == 0 and Time_S == 0 :
+                os.system('cls')
                 with SSHTunnelForwarder(
                     ("saichann.shop", 22),
                     ssh_username="saichann",
@@ -61,7 +62,7 @@ while(1):
                     cursor.close()
                     db.close()
                     server.stop()
-                print(f"The next data acquisition time is {Time_H}:{Time_M+waittime}:{Time_S}")
+                print('Current Time:'+time.strftime("%Y/%m/%d %H:%M:%S", Get_Time(0)))
                 time.sleep(waittime*60)
             if Time_H == 22:
                 break
