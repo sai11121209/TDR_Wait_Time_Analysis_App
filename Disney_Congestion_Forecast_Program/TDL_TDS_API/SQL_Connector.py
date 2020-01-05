@@ -7,13 +7,16 @@ from Print_Data import Print_Data
 
 
 #waittime = int(input('データ取得間隔指定(分):'))
-waittime = 5
-Timedata = Get_Time(1)
-Time_H = int(time.strftime("%H",Timedata))
-Time_M = int(time.strftime("%M",Timedata))
-Time_S = int(time.strftime("%S",Timedata))
 #開園時刻閉園時刻取得
 while(1):
+    waittime = 5
+    Timedata = Get_Time(1)
+    Time_H = int(time.strftime("%H",Timedata))
+    Time_M = int(time.strftime("%M",Timedata))
+    Time_S = int(time.strftime("%S",Timedata))
+    time.sleep(1)
+    os.system('cls')
+    print('Current Time:'+time.strftime("%Y/%m/%d %H:%M:%S", Get_Time(0)))
     if 7==Time_H and 45==Time_M:
         while(1):
             Time_H = int(time.strftime("%H",Timedata))
