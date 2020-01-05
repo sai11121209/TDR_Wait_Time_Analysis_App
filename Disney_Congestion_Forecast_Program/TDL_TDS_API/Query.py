@@ -35,7 +35,7 @@ def Sel_FacID_Only():
 
 #待ち時間データ全消去
 def Del_All():
-    sql = 'DELETE FROM Standby_Time;'
+    sql = 'TRUNCATE `Standby_Time` ;'
     return sql
 
 #Auto_Increment初期化
