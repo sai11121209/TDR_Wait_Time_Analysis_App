@@ -13,6 +13,11 @@ def In_All(data):
     sql = 'INSERT INTO Standby_Time (Facility_ID,Standby_Time) VALUE ('+data.get_id()+',"'+data.get_standby_time()+'");'
     return sql
 
+#施設情報取得
+def Sel_FacID_FacName():
+    sql = 'SELECT Facility.Facility_Name FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID  group by Facility.Facility_Name;'
+    return sql
+
 #最新待ち時間取得
 def Sel_Wait_Time_Latest():
     sql = 'SELECT Facility.Facility_Name,Standby_Time.Standby_Time,MAX(Standby_Time.Date) FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID  group by Facility.Facility_Name;'
@@ -20,7 +25,12 @@ def Sel_Wait_Time_Latest():
 
 #待ち時間csv書き出し
 def Sel_All():
-    sql = 'SELECT Facility.Facility_ID,Standby_Time.Standby_Time,Standby_Time.Date FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID;'
+    sql = 'SELECT Standby_Time.Facility_ID,Standby_Time.Standby_Time,Standby_Time.Date FROM Standby_Time WHERE (Standby_Time.Standby_Time,Standby_Time.Date) IN (SELECT Standby_Time.Standby_Time,Standby_Time.Date FROM Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID group by Facility.Facility_ID ORDER BY Standby_Time.Date ASC,Facility.Facility_ID ASC);'
+    return sql
+
+#待ち時間csv書き出し(施設IDのみ)
+def Sel_FacID_Only():
+    sql = 'SELECT Facility.Facility_ID FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID  group by Facility.Facility_Name;'
     return sql
 
 #待ち時間データ全消去

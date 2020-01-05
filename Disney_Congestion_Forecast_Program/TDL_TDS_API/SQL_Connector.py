@@ -12,7 +12,7 @@ while(1):
     Time_H = int(time.strftime("%H",Timedata))
     Time_M = int(time.strftime("%M",Timedata))
     Time_S = int(time.strftime("%S",Timedata))
-    if Time_M % waittime == 0 and Time_S == 57 :
+    if Time_M % waittime == 0 and Time_S == 0 :
         with SSHTunnelForwarder(
             ("saichann.shop", 22),
             ssh_username="saichann",
@@ -53,7 +53,7 @@ while(1):
             server.stop()
         print(f"The next data acquisition time is {Time_H}:{Time_M+waittime}:{Time_S}")
         time.sleep(waittime*60)
-    if Time_H == 22:
+    if Time_H == 1:
         break
 with SSHTunnelForwarder(
         ("saichann.shop", 22),
@@ -75,7 +75,6 @@ with SSHTunnelForwarder(
         print('MySQL:'+str(db.is_connected()))
         db.ping(reconnect=True)
         cursor = db.cursor(named_tuple=True)
-        cursor.execute(Query.Sel_All())
         #Print_Data(cursor)
         CSV_Writer.CSV_Writer(cursor,Timedata)
         #cursor.execute(Query.Del_All())
