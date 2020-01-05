@@ -1,5 +1,5 @@
 #MySQL/SSL_Connector
-import mysql.connector,os,time
+import mysql.connector,os,time,Query
 from sshtunnel import SSHTunnelForwarder
 from Download_Data import Download_Data
 from Get_Time import Get_Time
@@ -34,23 +34,22 @@ while(1):
             cursor = db.cursor(named_tuple=True)
             datas = Download_Data()
             #for data in datas:
-                #sql = 'INSERT INTO Facility (Facility_ID, Facility_Name, Facility_URL) VALUE ('+data.get_id()+',"'+data.get_name()+'","'+data.get_link_url()+'");'
+                #sql = Query.In_Fac_List(data)
                 #print(sql)
                 #cursor.execute(sql)
                 #db.commit()
             for data in datas:
                 if len(data.get_standby_time()) == 0:
-                    sql = 'INSERT INTO Standby_Time (Facility_ID) VALUE ('+data.get_id()+');'
+                    sql = Query.In_FacID_Only(data)
                 else:
-                    sql = 'INSERT INTO Standby_Time (Facility_ID,Standby_Time) VALUE ('+data.get_id()+',"'+data.get_standby_time()+'");'
+                    sql = Query.In_All(data)
                 print(sql,end='')
                 cursor.execute(sql)
                 print('ok')
-                print('')
             db.commit()
             cursor.close()
             db.close()
             server.stop()
         print(f"The next data acquisition time is {Time_H}:{Time_M+waittime}:{Time_S}")
         time.sleep(waittime*60)
-    #sql = 'ALTER TABLE `Standby_Time` auto_increment = 1'
+    sql = Query.A_I_Clear()
