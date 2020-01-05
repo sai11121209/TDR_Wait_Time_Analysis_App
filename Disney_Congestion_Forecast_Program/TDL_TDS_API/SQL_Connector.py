@@ -1,11 +1,12 @@
 #MySQL/SSL_Connector
-import mysql.connector,os,time,Query
+import mysql.connector,os,time,Query,CSV_Writer
 from sshtunnel import SSHTunnelForwarder
 from Download_Data import Download_Data
 from Get_Time import Get_Time
+from Print_Data import Print_Data
 
 waittime = int(input('データ取得間隔指定(分):'))
-
+#開園時刻閉園時刻取得
 while(1):
     Timedata = Get_Time(1)
     Time_H = int(time.strftime("%H",Timedata))
@@ -52,4 +53,35 @@ while(1):
             server.stop()
         print(f"The next data acquisition time is {Time_H}:{Time_M+waittime}:{Time_S}")
         time.sleep(waittime*60)
-    sql = Query.A_I_Clear()
+    if Time_H == 22:
+        break
+with SSHTunnelForwarder(
+        ("saichann.shop", 22),
+        ssh_username="saichann",
+        ssh_password="1o1gxdlSYkes",
+        remote_bind_address=("127.0.0.1",3306)
+    ) as server:
+        server.start()
+        print('SSL:ok')
+        connect_args = {
+            "host": "localhost",
+            "port": server.local_bind_port,
+            "user": "saichann",
+            "password": "Yuta1209",
+            "database" : 'saichann',
+        }
+        
+        db = mysql.connector.connect(**connect_args)
+        print('MySQL:'+str(db.is_connected()))
+        db.ping(reconnect=True)
+        cursor = db.cursor(named_tuple=True)
+        cursor.execute(Query.Sel_All())
+        #Print_Data(cursor)
+        CSV_Writer.CSV_Writer(cursor,Timedata)
+        #cursor.execute(Query.Del_All())
+        db.commit()
+        #cursor.execute(Query.A_I_Clear())
+        db.commit()
+        cursor.close()
+        db.close()
+        server.stop()
