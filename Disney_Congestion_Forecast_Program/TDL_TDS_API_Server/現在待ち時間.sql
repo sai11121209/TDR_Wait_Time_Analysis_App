@@ -1,0 +1,1 @@
+SELECT Facility.Facility_Name,Standby_Time.Standby_Time,MAX(Standby_Time.Date) FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID  group by Facility.Facility_Name;
