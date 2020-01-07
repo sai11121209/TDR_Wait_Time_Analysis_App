@@ -1,10 +1,9 @@
 #MySQL/SSL_Connector
-import mysql.connector,os,time,Query#,CSV_Writer
+import mysql.connector,os,time,Query,CSV_Writer
 from sshtunnel import SSHTunnelForwarder
 from Download_Data import Download_Data
 from Get_Time import Get_Time
 from Print_Data import Print_Data
-
 
 #waittime = int(input('データ取得間隔指定(分):'))
 waittime = 5
@@ -72,16 +71,17 @@ with SSHTunnelForwarder(
         "password": "Yuta1209",
         "database" : 'saichann',
     }
-    
     db = mysql.connector.connect(**connect_args)
     print('MySQL:'+str(db.is_connected()))
     db.ping(reconnect=True)
     cursor = db.cursor(named_tuple=True)
-    Print_Data(cursor)
+    #Print_Data(cursor)
     CSV_Writer.CSV_Writer(cursor,Timedata)
     cursor.execute(Query.Del_All())
     db.commit()
     cursor.execute(Query.A_I_Clear())
+    db.commit()
+    cursor.execute(Query.T_Opt())
     db.commit()
     cursor.close()
     db.close()

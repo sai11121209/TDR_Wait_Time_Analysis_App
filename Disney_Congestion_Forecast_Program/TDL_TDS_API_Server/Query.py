@@ -43,5 +43,10 @@ def A_I_Clear():
     sql = 'ALTER TABLE `Standby_Time` auto_increment = 1'
     return sql
 
+#テーブルの最適化
+def T_Opt():
+    sql = 'OPTIMIZE TABLE `Standby_Time`;'
+    return sql
+
 if __name__ == "__main__":
     pass
