@@ -40,12 +40,6 @@ class SubTableView(object):
         self.tv.data_source = self
         self.count = 0
 
-    def tableview_did_select(self, tableview, section, row):
-        tv = ui.TableView()
-        tv.name = self.facility[row]['name']
-        tv.delegate  = self
-        tableview.navigation_view.push_view(tv)
-
     def tableview_number_of_sections(self, tableview):
         return 1
 
