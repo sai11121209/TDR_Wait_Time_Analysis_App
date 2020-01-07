@@ -1,7 +1,7 @@
 import pandas as pd
 import time,Query,copy
 def CSV_Writer(cursor,Time):
-    dr = "C:/Users/sai11/OneDrive/デスクトップ/春休み/DisneyWaitTimeList/DisneyWaitTimeList"
+    dr = "C:/Users/sai11/OneDrive/デスクトップ/春休み/WebScrapingProgram/Disney_Congestion_Forecast_Program/TDL_TDS_Wait_Time_List/"
     Date = time.strftime("%Y_%m_%d",Time)
     print(Date)
     data = {}
