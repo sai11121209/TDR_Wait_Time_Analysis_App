@@ -1,15 +1,15 @@
 # 東京ディズニーリゾート待ち時間測定アプリ
 ![](https://img.shields.io/badge/Pyhton-3.7.8-4169e1.svg)
 ![](https://img.shields.io/badge/Pyhtonista3-3.6-00fa9a.svg)
-![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)
+![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)  
+```
 $ pip3 install numpy
+```
 
-ちょっとしたアプリを作ってみたくなりPyhtonista3のUIライブラリを使用し簡易的なアプリ開発を行っています.
-
-内容
+## 内容
 今回はレンタルサーバXREAをお借りしてMySQLサーバを構築しました.
 
-## 自宅PCでの処理の流れ
+### 自宅PCでの処理の流れ
 
 1:タスクスケジューラーを使用し開園時刻5分前にプログラムを起動.  
 2:自宅PC上でディズニー待ち時間APIのデータを取得.  
@@ -21,4 +21,4 @@ $ pip3 install numpy
 4:取得データをcsvファイルに書き出す.  
 5:MySQLサーバ待ち時間テーブルのデータを全消去とともにオートインクリメントをリセット.  
 
-## iPhone(Pyhtonista3)での処理の流れ
+### iPhone(Pyhtonista3)での処理の流れ
