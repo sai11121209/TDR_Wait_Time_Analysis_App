@@ -1,7 +1,11 @@
 # 東京ディズニーリゾート待ち時間測定アプリ
 ![](https://img.shields.io/badge/Pyhton-3.7.8-4169e1.svg)
 ![](https://img.shields.io/badge/Pyhtonista3-3.2-00fa9a.svg)
-![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)  
+![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)
+![](https://img.shields.io/pypi/v/mysql-connector-python?label=mysql-connector-python)
+![](https://img.shields.io/pypi/v/sshtunnel?label=sshtunnel)
+![](https://img.shields.io/pypi/v/requests?label=requests)
+![](https://img.shields.io/pypi/v/pandas?label=Pandas)
 ## 内容
 東京ディズニーリゾートでのアトラクション混雑を少しでも減らせるように一日の待ち時間の流れ瞬時に可視化し,現在そのアトラクションが空いているのか,混雑しているのか判断することのできるアプリを到達点に開発中です.
 ### 実装済み機能
