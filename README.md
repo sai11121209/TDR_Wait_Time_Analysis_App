@@ -12,6 +12,7 @@
 ```
 /Disney_Congestion_Forecast_Program/TDL_TDS_API_Client
 ```
+***上記のファイル以外は全く関係ありません<br>ごちゃごちゃですいません***
 ## 標準ライブラリを含む使用ライブラリ
 mysql.connector  
 os  
