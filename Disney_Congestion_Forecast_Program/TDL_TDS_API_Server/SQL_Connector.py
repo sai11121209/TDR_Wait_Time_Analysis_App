@@ -4,10 +4,9 @@ from sshtunnel import SSHTunnelForwarder
 from Download_Data import Download_Data
 from Get_Time import Get_Time
 from Print_Data import Print_Data
-import os
 
 #waittime = int(input('データ取得間隔指定(分):'))
-waittime = 1
+waittime = 5
 #開園時刻閉園時刻取得
 uploadlogs = []
 while(1):
