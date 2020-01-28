@@ -42,8 +42,6 @@ $ pip install pandas
 1. 取得したデータをテーブル形式で画面に表示.  
 ## Pythonista3実行画面
 ### 開園時実行画面
-#### 起動直後
-!<img src="開園時実行画面.jpg" alt="attach:cat" title="attach:cat" width="200" height="433">  
-#### アトラクション選択時
+<img src="開園時実行画面.jpg" width=30%><br>アプリ起動直後の画面
 ### 閉園時実行画面
-!<img src="閉園時実行画面.jpg" alt="attach:cat" title="attach:cat" width="200" height="433">  
+<img src="閉園時実行画面.jpg" width=30%><br>ディズニーリゾート閉園時の画面
