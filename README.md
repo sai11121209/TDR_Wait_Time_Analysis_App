@@ -14,17 +14,17 @@
 1. その他ピーク値検出を用いた自動混雑判定
 ## 標準ライブラリを含む使用ライブラリ
 ### [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)  
-MySQL接続に使用  
+> MySQL接続に使用  
 ### [os](https://docs.python.org/ja/3/library/os.html)
-コンソール画面クリアに使用  
+> コンソール画面クリアに使用  
 ### [time](https://docs.python.org/ja/3/library/time.html)
-時刻でのプログラム制御に使用  
+> 時刻でのプログラム制御に使用  
 ### [sshtunnel](https://pypi.org/project/sshtunnel/)
-MySQLサーバ接続時SSL暗号化通信を行うためsshtunnelを使用  
+> MySQLサーバ接続時SSL暗号化通信を行うためsshtunnelを使用  
 ### [requests](https://pypi.org/project/requests/)
-WebAPIデータ取得時に使用  
+> WebAPIデータ取得時に使用  
 ### [pandas](https://pypi.org/project/pandas/)
-一日の待ち時間データをcsvファイルに書き出す際に使用
+> 一日の待ち時間データをcsvファイルに書き出す際に使用
 ## サードパーティライブラリのインストール
 ```
 $ pip install mysql-connector-python
