@@ -13,21 +13,21 @@
 1. 一日の待ち時間の流れをグラフ化し表示
 1. その他ピーク値検出を用いた自動混雑判定
 ## 標準ライブラリを含む使用ライブラリ
-### mysql.connector  
+### [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)  
 MySQL接続に使用  
-### os  
+### [os](https://docs.python.org/ja/3/library/os.html)
 コンソール画面クリアに使用  
-### time  
+### [time](https://docs.python.org/ja/3/library/time.html)
 時刻でのプログラム制御に使用  
-### sshtunnel
+### [sshtunnel](https://pypi.org/project/sshtunnel/)
 MySQLサーバ接続時SSL暗号化通信を行うためsshtunnelを使用  
-### requests
+### [requests](https://pypi.org/project/requests/)
 WebAPIデータ取得時に使用  
-### pandas
+### [pandas](https://pypi.org/project/pandas/)
 一日の待ち時間データをcsvファイルに書き出す際に使用
 ## サードパーティライブラリのインストール
 ```
-$ pip install mysql.connector
+$ pip install mysql-connector-python
 $ pip install sshtunnel
 $ pip install requests
 $ pip install pandas
