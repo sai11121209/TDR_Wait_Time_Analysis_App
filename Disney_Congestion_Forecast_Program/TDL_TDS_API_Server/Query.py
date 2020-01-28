@@ -3,6 +3,7 @@ def In_Fac_List(data):
     sql = 'INSERT INTO Facility (Facility_ID, Facility_Name, Facility_URL) VALUE ('+data.get_id()+',"'+data.get_name()+'","'+data.get_link_url()+'");'
     return sql
 
+
 #待ち時間書き込み(施設IDのみ)
 def In_FacID_Only(data):
     sql = 'INSERT INTO Standby_Time (Facility_ID) VALUE ('+data.get_id()+');'

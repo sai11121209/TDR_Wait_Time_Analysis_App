@@ -3,15 +3,18 @@ from SQL_Connector import *
 
 class MyTableView(object):
     def __init__(self):
-        self.list = Get_Data()
+        self.list,self.time = Get_Data()
 
         self.tv = ui.TableView()
-        self.tv.name = 'アトラクション'
+        if len(self.list) == 0:
+            self.tv.name = '閉園中'
+        else:
+            self.tv.name = self.time[0][0]+':'+'ランド'+str(self.time[0][1])[:-3]+'-'+str(self.time[0][2])[:-3]+' シー'+str(self.time[1][1])[:-3]+'-'+str(self.time[1][2])[:-3]
         self.tv.delegate = self
         self.tv.data_source = self
 
         nv = ui.NavigationView(self.tv)
-        nv.name = '東京ディズニーランド/シー'
+        nv.name = '東京ディズニーランド/シー待ち時間解析'
         nv.present('sheet')
 
     def tableview_did_select(self, tableview, section, row):
