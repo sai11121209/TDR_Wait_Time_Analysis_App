@@ -52,10 +52,9 @@ class facilities:
 
     #営業時間
     def set_operating_status(self,operating_status):
-        self.operating_status = operating_status 
+        self.operating_status = operating_status.split(':',1)
     def get_operating_status(self):
-        return  self.operating_status
-
+        return self.operating_status
     #営業状態
     def set_operating_status_cd(self,operating_status_cd):
         self.operating_status_cd = operating_status_cd

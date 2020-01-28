@@ -4,10 +4,12 @@ from sshtunnel import SSHTunnelForwarder
 from Download_Data import Download_Data
 from Get_Time import Get_Time
 from Print_Data import Print_Data
+import os
 
 #waittime = int(input('データ取得間隔指定(分):'))
-waittime = 5
+waittime = 1
 #開園時刻閉園時刻取得
+uploadlogs = []
 while(1):
     Timedata = Get_Time(1)
     Time_H = int(time.strftime("%H",Timedata))
@@ -42,9 +44,15 @@ while(1):
                 #db.commit()
             for data in datas:
                 if len(data.get_standby_time()) == 0:
-                    sql = Query.In_FacID_Only(data)
+                    if len(data.get_operating_status()) == 1:
+                        sql = Query.In_FacID_Only(data)
+                    else:
+                        sql = Query.In_Fac_Sta_Only(data)
                 else:
-                    sql = Query.In_All(data)
+                    if len(data.get_operating_status()) == 1:
+                        sql = Query.In_Fac_WT_Only(data)
+                    else:
+                        sql = Query.In_All(data)
                 print(sql,end='')
                 cursor.execute(sql)
                 print('ok')
@@ -52,7 +60,10 @@ while(1):
             cursor.close()
             db.close()
             server.stop()
-            print('Current Time:'+time.strftime("%Y/%m/%d %H:%M:%S", Get_Time(0)))
+            uploadlogs.append(time.strftime("%Y/%m/%d %H:%M:%S", Get_Time(0)))
+            os.system('cls')
+            for uploadlog in uploadlogs:
+                print('Upload Time:'+uploadlog)
         time.sleep(waittime*50)
     if Time_H == 22:
         break
