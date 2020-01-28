@@ -3,6 +3,15 @@
 ![](https://img.shields.io/badge/Pyhtonista3-3.6-00fa9a.svg)
 ![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)  
 
+## プログラムファイルディレクトリ
+サーバ側
+```
+/Disney_Congestion_Forecast_Program/TDL_TDS_API_Server
+```
+クライアント側
+```
+/Disney_Congestion_Forecast_Program/TDL_TDS_API_Client
+```
 ## 標準ライブラリを含む使用ライブラリ
 mysql.connector  
 os  
