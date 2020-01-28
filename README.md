@@ -2,31 +2,6 @@
 ![](https://img.shields.io/badge/Pyhton-3.7.8-4169e1.svg)
 ![](https://img.shields.io/badge/Pyhtonista3-3.2-00fa9a.svg)
 ![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)  
-
-## プログラムファイルディレクトリ
-サーバ側
-```
-/Disney_Congestion_Forecast_Program/TDL_TDS_API_Server
-```
-クライアント側
-```
-/Disney_Congestion_Forecast_Program/TDL_TDS_API_Client
-```
-***上記のファイル以外は全く関係ありません<br>ごちゃごちゃですいません***
-## 標準ライブラリを含む使用ライブラリ
-mysql.connector  
-os  
-time  
-sshtunnel
-requests
-pandas  
-## サードパーティライブラリのインストール
-```
-$ pip install mysql.connector
-$ pip install sshtunnel
-$ pip install requests
-$ pip install pandas
-```
 ## 内容
 東京ディズニーリゾートでのアトラクション混雑を少しでも減らせるように一日の待ち時間の流れ瞬時に可視化し,現在そのアトラクションが空いているのか,混雑しているのか判断することのできるアプリを到達点に開発中です.
 ### 実装済み機能
@@ -37,6 +12,36 @@ $ pip install pandas
 ### 実装予定機能
 1. 一日の待ち時間の流れをグラフ化し表示
 1. その他ピーク値検出を用いた自動混雑判定
+## 標準ライブラリを含む使用ライブラリ
+### mysql.connector  
+MySQL接続に使用  
+### os  
+コンソール画面クリアに使用  
+### time  
+時刻でのプログラム制御に使用  
+### sshtunnel
+MySQLサーバ接続時SSL暗号化通信を行うためsshtunnelを使用  
+### requests
+WebAPIデータ取得時に使用  
+### pandas
+一日の待ち時間データをcsvファイルに書き出す際に使用
+## サードパーティライブラリのインストール
+```
+$ pip install mysql.connector
+$ pip install sshtunnel
+$ pip install requests
+$ pip install pandas
+```
+## プログラムファイルディレクトリ
+サーバ側
+```
+/Disney_Congestion_Forecast_Program/TDL_TDS_API_Server
+```
+クライアント側
+```
+/Disney_Congestion_Forecast_Program/TDL_TDS_API_Client
+```
+**上記のファイル以外は全く関係ありません<br>ごちゃごちゃですいません**
 ## 動作概要
 ### 自宅PCでの処理の流れ  
 1. タスクスケジューラーを使用し開園時刻5分前にプログラムを起動.
@@ -45,7 +50,7 @@ $ pip install pandas
 1. 閉園時刻と同時に1日の待ち時間データをMySQLサーバより取得.
 1. 取得データをcsvファイルに書き出す.
 1. MySQLサーバ待ち時間テーブルのデータを全消去とともにオートインクリメントをリセット.  
-***これらの処理のうち2,3の処理を開園時刻から閉園時刻まで指定間隔(ex:5分)で実行しMySQLサーバにデータを蓄積させる.***  
+**これらの処理のうち2,3の処理を開園時刻から閉園時刻まで指定間隔(ex:5分)で実行しMySQLサーバにデータを蓄積させる.**
 ### iPhone(Pyhtonista3)での処理の流れ  
 1. 待ち時間の情報を確認したい時にアプリを起動.
 1. プログラム実行と同時にMySQLサーバから1日の平均待ち時間,現在に待ち時間を取得.
