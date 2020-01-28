@@ -2,10 +2,21 @@
 ![](https://img.shields.io/badge/Pyhton-3.7.8-4169e1.svg)
 ![](https://img.shields.io/badge/Pyhtonista3-3.6-00fa9a.svg)
 ![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)  
-```
-$ pip3 install numpy
-```
 
+## 使用ライブラリ
+> mysql.connector  
+> os  
+> time  
+> sshtunnel
+> requests
+> pandas  
+## 使用ライブラリのインストール
+```
+$ pip install mysql.connector
+$ pip install sshtunnel
+$ pip install requests
+$ pip install pandas
+```
 ## 内容
 今回はレンタルサーバXREAをお借りしてMySQLサーバを構築しました.
 
