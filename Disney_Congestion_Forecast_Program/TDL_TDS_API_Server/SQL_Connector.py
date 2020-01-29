@@ -6,7 +6,7 @@ from Get_Time import Get_Time
 from Print_Data import Print_Data
 
 #waittime = int(input('データ取得間隔指定(分):'))
-waittime = 5
+waittime = 1
 #開園時刻閉園時刻取得
 uploadlogs = []
 while(1):
