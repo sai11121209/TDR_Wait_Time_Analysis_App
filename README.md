@@ -7,7 +7,7 @@
 ![](https://img.shields.io/pypi/v/requests?label=requests)
 ![](https://img.shields.io/pypi/v/pandas?label=Pandas)
 ![](https://img.shields.io/github/issues/sai11121209/TDR_WaitingTime_Measurement_App)  
-バッチで遊んでみました。
+バッチで遊んでみました.
 ## 内容
 東京ディズニーリゾートでのアトラクション混雑を少しでも減らせるように一日の待ち時間の流れ瞬時に可視化し,現在そのアトラクションが空いているのか,混雑しているのか判断することのできるアプリを到達点に開発中です.
 ### 実装済み機能
