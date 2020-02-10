@@ -1,4 +1,4 @@
-import ui,console
+import ui,console,APP_Plot
 from SQL_Connector import *
 
 class MyTableView(object):
@@ -42,7 +42,14 @@ class SubTableView(object):
         self.tv.delegate = self
         self.tv.data_source = self
         self.count = 0
-
+    
+    #訂正点
+    #listの作成が必要
+    def tableview_did_select(self, tableview, section, row):
+        tv = APP_Plot.MyClass()
+        tv.name = self.list[row]['name']
+        tableview.navigation_view.push_view(tv)
+        
     def tableview_number_of_sections(self, tableview):
         return 1
 
@@ -59,5 +66,6 @@ class SubTableView(object):
             cell.text_label.text = '更新時刻:'+str(self.facility['time'])
         self.count = self.count + 1
         return cell
+
 
 MyTableView()
