@@ -22,7 +22,7 @@ def In_Fac_WT_Only(data):
 
 #待ち時間書き込み(施設ID,待ち時間,営業時間)
 def In_All(data):
-    operating_status_time = data.get_operating_status()[1].split('-')
+    C_time = data.get_operating_status()[1].split('-')
     sql = 'INSERT INTO Standby_Time (Facility_ID,Standby_Time,Operating_Status,Operating_Status_Start,Operating_Status_End) VALUE ('+data.get_id()+',"'+data.get_standby_time()+'","'+data.get_operating_status()[0]+'","'+operating_status_time[0]+'","'+operating_status_time[1]+'");'
     return sql
 
