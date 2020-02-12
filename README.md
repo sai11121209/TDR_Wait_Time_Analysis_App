@@ -31,12 +31,17 @@
 > WebAPIデータ取得時に使用  
 ### [pandas](https://pypi.org/project/pandas/)
 > 一日の待ち時間データをcsvファイルに書き出す際に使用
+### [matplotlib](https://pypi.org/project/matplotlib/)
+> 待ち時間変化のグラフをプロットする際に使用
+### [io](https://pypi.org/project/pandas/)
+> グラフの画像データを扱う際に使用
 ## サードパーティライブラリのインストール
 ```
 $ pip install mysql-connector-python
 $ pip install sshtunnel
 $ pip install requests
 $ pip install pandas
+$ pip install matplotlib
 ```
 ## プログラムファイルディレクトリ
 サーバ側
