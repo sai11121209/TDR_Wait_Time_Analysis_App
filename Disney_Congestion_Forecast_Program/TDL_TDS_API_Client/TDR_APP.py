@@ -1,10 +1,10 @@
-import ui,console,APP_Plot
+import ui,console,APP_Plot,SQL_Connector_PLT
 from SQL_Connector import *
+import numpy as np
 
 class MyTableView(object):
     def __init__(self):
         self.list,self.time = Get_Data()
-
         self.tv = ui.TableView()
         if len(self.list) == 0:
             self.tv.name = '閉園中'
@@ -15,7 +15,7 @@ class MyTableView(object):
 
         nv = ui.NavigationView(self.tv)
         nv.name = '東京ディズニーランド/シー待ち時間解析'
-        nv.present('sheet')
+        nv.present('fullscreen')
 
     def tableview_did_select(self, tableview, section, row):
         tv = ui.TableView()
@@ -43,13 +43,12 @@ class SubTableView(object):
         self.tv.data_source = self
         self.count = 0
     
-    #訂正点
-    #listの作成が必要
     def tableview_did_select(self, tableview, section, row):
-        tv = APP_Plot.MyClass()
-        tv.name = self.list[row]['name']
-        tableview.navigation_view.push_view(tv)
-        
+        if row != 2:
+            tv = APP_Plot.MyClass(SQL_Connector_PLT.Get_Data(self.facility['ID'])[0],SQL_Connector_PLT.Get_Data(self.facility['ID'])[1],int(self.facility['average']),self.facility['name'])
+            tv.name = '待ち時間遷移グラフ'
+            tableview.navigation_view.push_view(tv)
+            
     def tableview_number_of_sections(self, tableview):
         return 1
 
