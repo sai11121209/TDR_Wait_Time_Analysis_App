@@ -1,6 +1,5 @@
 import ui,console,APP_Plot,SQL_Connector_PLT
 from SQL_Connector import *
-import numpy as np
 
 class MyTableView(object):
     def __init__(self):
