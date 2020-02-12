@@ -9,8 +9,14 @@ def Sel_TDS_Operating_Status():
     return sql
 
 #全待ち時間取得
+#起動時高負荷のため一時無効
+#def Sel_All_Wait_Time():
+    #sql = 'SELECT Standby_Time,Date,Facility_ID FROM Standby_Time;'
+    #return sql
+
+#全待ち時間取得
 def Sel_All_Wait_Time(ID):
-    sql = 'SELECT Standby_Time,Date FROM Standby_Time WHERE Facility_ID = '+str(ID)+';'
+    sql = 'SELECT Standby_Time,Date,Facility_ID FROM Standby_Time WHERE Facility_ID = '+str(ID)+';'
     return sql
 
 #待ち時間平均取得
