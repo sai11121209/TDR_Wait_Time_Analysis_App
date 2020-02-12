@@ -1,9 +1,7 @@
-import ui
-import numpy as np
+import ui,sys
 import matplotlib.pyplot as plt
 from matplotlib.dates import date2num
 from matplotlib.dates import DateFormatter
-import sys
 from matplotlib.font_manager import FontProperties
 from io import BytesIO
 
