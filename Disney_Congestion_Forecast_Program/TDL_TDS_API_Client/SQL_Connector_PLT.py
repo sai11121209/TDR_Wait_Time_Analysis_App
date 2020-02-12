@@ -1,4 +1,4 @@
-import mysql.connector,copy,datetime,Query
+ import mysql.connector,copy,datetime,Query
 from sshtunnel import SSHTunnelForwarder
 
 def Get_Data(ID):
@@ -25,16 +25,12 @@ def Get_Data(ID):
         cursor.execute(Query.Sel_All_Wait_Time(ID))
         rows = cursor.fetchall()
         waittime,date = [],[]
-        n = 0
         for row in rows:
-            if row[0] != None:
+            if row[0] != None and row[0] != '終日中止':
                 waittime.append(int(row[0]))
             else:
-                waittime.append(1)
+                waittime.append(0)
             date.append(row[1])
-            n += 1
-        cursor.execute(Query.Sel_All_Wait_Time(ID))
-        rows = cursor.fetchall()
         cursor.close()
         print('MySQL:Disconnected')
         db.close()
