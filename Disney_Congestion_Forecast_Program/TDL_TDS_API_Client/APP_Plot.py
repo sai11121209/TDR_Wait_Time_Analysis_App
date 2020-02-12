@@ -32,6 +32,8 @@ class MyClass(ui.View):
         ax.axhline(self.Avg, ls = '-', color = 'red')
         ax.plot(self.date,self.waittime)
         plt.autoscale(enable=True, tight=True)
+        ax.patch.set_facecolor('black')
+        ax.patch.set_alpha(0.6) 
         #plt.legend(loc='upper left', borderaxespad=0, fontsize=18)
         ax.xaxis.set_major_formatter(DateFormatter('%H:%M'))
         plt.ylim(min(self.waittime)-3,max(self.waittime)+3)
