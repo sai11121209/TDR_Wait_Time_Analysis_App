@@ -78,7 +78,7 @@ $ pip install matplotlib
 ### 開園時実行画面
 <img src="開園時実行画面.jpg" width=30%><br>アプリ起動直後の画面  
 <img src="アトラクション選択時画面.jpg" width=30%><br>アトラクション選択時画面の画面  
-<img src="8F049547-2002-4437-86B6-99E592702AB0.png" width=30%><br>待ち時間変化グラフの画面
+<img src="4B4B3224-F93A-4B63-8857-4CBAED3E2C09.png" width=30%><br>待ち時間変化グラフの画面
 ### 閉園時実行画面
 <img src="閉園時実行画面.jpg" width=30%><br>ディズニーリゾート閉園時の画面
 ## 今後の課題
