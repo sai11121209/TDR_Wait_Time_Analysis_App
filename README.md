@@ -68,7 +68,7 @@ $ pip install pandas
 ### 開園時実行画面
 <img src="開園時実行画面.jpg" width=30%><br>アプリ起動直後の画面  
 <img src="アトラクション選択時画面.jpg" width=30%><br>アトラクション選択時画面の画面
-<img src="70A8AD23-63C1-409E-935D-54C7BF963C60.png" width=30%><br>待ち時間遷移グラフの画面
+<img src="8F049547-2002-4437-86B6-99E592702AB0.png" width=30%><br>待ち時間遷移グラフの画面
 ### 閉園時実行画面
 <img src="閉園時実行画面.jpg" width=30%><br>ディズニーリゾート閉園時の画面
 ## 今後の課題
