@@ -23,15 +23,15 @@ def Get_Data():
         db.ping(reconnect=True)
         cursor = db.cursor(named_tuple=False)
         datas = []
-        data = {'name':None,'average':None,'waittime':None,'time':None}
-        sql = 'SELECT Facility.Facility_Name,AVG(Standby_Time.Standby_Time),MAX(Standby_Time.Date) FROM Facility inner join Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID group by Facility.Facility_Name;'
-        cursor.execute(sql)
+        data = {'ID':None,'name':None,'average':None,'waittime':None,'time':None}
+        cursor.execute(Query.Sel_Wait_Time_Avg())
         rows = cursor.fetchall()
         n = 0
         for row in rows:
             datas.append(copy.deepcopy(data))
-            datas[n]['name'] = row[0]
-            datas[n]['average'] = row[1]
+            datas[n]['ID'] = row[0]
+            datas[n]['name'] = row[1]
+            datas[n]['average'] = row[2]
             n = n + 1
         times = []
         cursor.execute(Query.Sel_TDL_Operating_Status())
