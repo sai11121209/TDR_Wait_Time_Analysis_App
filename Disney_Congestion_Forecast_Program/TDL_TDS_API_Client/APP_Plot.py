@@ -1,42 +1,46 @@
 import ui
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.dates import date2num
+from matplotlib.dates import DateFormatter
+import sys
+from matplotlib.font_manager import FontProperties
 from io import BytesIO
 
 class MyClass(ui.View):
-    def __init__(self, p1=1, p2=2, p3=3, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.p1 = p1
-        self.p2 = p2
-        self.p3 = p3
+    def __init__(self, waittime, date, Avg, name):
+        self.sitepath = [s for s in sys.path if s.endswith('Documents/site-packages')]
+        self.fp = FontProperties(fname = f"{self.sitepath[0]}/ipaexg.ttf", size = 14)
+        self.waittime = waittime
+        self.waittime.reverse()
+        self.date = date2num(date)
+        self.Avg = Avg
+        self.title = name
         self.img = None
         self.make_view()
 
     def make_view(self):
-
-        slider1 = ui.Slider(x=0, y=self.height-32 , width=self.bounds.width,
-                            value=self.y, action=self.slider_action)
-        self.add_subview(slider1)
-        self.img = ui.ImageView(frame=self.bounds.inset(30, 30))
+        self.img = ui.ImageView(frame=(0,0,375,300))
         self.add_subview(self.img)
         self.set_needs_display()
 
     def draw(self):
-        # called by ui Module when set_needs_display() is called.
-        # as per the docs you should not call this method yourself.
-        plt.plot([self.p1, self.p2, self.p3])
+        fig = plt.figure(figsize = (6, 5))
+        ax = fig.add_subplot(111)
+        ax.grid()
+        ax.set_xlabel('時刻', fontproperties = self.fp)
+        ax.set_ylabel('待ち時間', fontproperties = self.fp)
+        ax.set_title(self.title, fontproperties = self.fp)
+        ax.axhline(self.Avg, ls = '-', color = 'red')
+        ax.plot(self.date,self.waittime)
+        plt.autoscale(enable=True, tight=True)
+        #plt.legend(loc='upper left', borderaxespad=0, fontsize=18)
+        ax.xaxis.set_major_formatter(DateFormatter('%H:%M'))
+        plt.ylim(min(self.waittime)-3,max(self.waittime)+3)
         b = BytesIO()
-        plt.savefig(b)
+        plt.savefig(b,dpi=600)
         img = ui.Image.from_data(b.getvalue())
         self.img.image = img
 
-    def slider_action(self, sender):
-        self.p1 *= sender.value+1
-        self.p2 *= sender.value+2
-        self.p3 *= sender.value+3
-        self.set_needs_display()
-
 if __name__ == '__main__':
-    f = (0, 0, 400, 400)
-    mc= MyClass(frame=f, name='*** WTF ***')
-    mc.present('sheet')
+    pass
