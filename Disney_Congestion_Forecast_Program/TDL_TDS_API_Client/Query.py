@@ -10,7 +10,12 @@ def Sel_TDS_Operating_Status():
 
 #全待ち時間取得
 def Sel_All_Wait_Time(ID):
-    sql = 'SELECT Standby_Time,Date FROM saichann.Standby_Time WHERE Facility_ID = '+ID+';'
+    sql = 'SELECT Standby_Time,Date FROM Standby_Time WHERE Facility_ID = '+str(ID)+';'
+    return sql
+
+#待ち時間平均取得
+def Sel_Wait_Time_Avg():
+    sql = 'SELECT Standby_Time.Facility_ID,Facility.Facility_Name,AVG(Standby_Time.Standby_Time),MAX(Standby_Time.Date) FROM Facility inner join Standby_Time ON Facility.Facility_ID = Standby_Time.Facility_ID group by Facility.Facility_Name;'
     return sql
 
 #最新待ち時間取得
