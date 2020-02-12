@@ -46,7 +46,7 @@ class SubTableView(object):
     def tableview_did_select(self, tableview, section, row):
         if row != 2:
             tv = APP_Plot.MyClass(SQL_Connector_PLT.Get_Data(self.facility['ID'])[0],SQL_Connector_PLT.Get_Data(self.facility['ID'])[1],int(self.facility['average']),self.facility['name'])
-            tv.name = '待ち時間遷移グラフ'
+            tv.name = '待ち時間変化グラフ'
             tableview.navigation_view.push_view(tv)
             
     def tableview_number_of_sections(self, tableview):
