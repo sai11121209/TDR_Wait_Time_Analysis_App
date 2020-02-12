@@ -6,6 +6,7 @@
 ![](https://img.shields.io/pypi/v/sshtunnel?label=sshtunnel)
 ![](https://img.shields.io/pypi/v/requests?label=requests)
 ![](https://img.shields.io/pypi/v/pandas?label=Pandas)
+![](https://img.shields.io/pypi/v/matplotlib?label=matplotlib)
 ![](https://img.shields.io/github/issues/sai11121209/TDR_WaitingTime_Measurement_App)  
 バッチで遊んでみました.
 ## 内容
@@ -19,6 +20,8 @@
 1. 一日の待ち時間の流れをグラフ化し表示(β機能として実装済)
 1. その他ピーク値検出を用いた自動混雑判定
 ## 標準ライブラリを含む使用ライブラリ
+### [ui](http://omz-software.com/pythonista/docs/ios/ui.html)  
+> Pythonista3上のみで使用するuiライブラリ  
 ### [mysql-connector-python](https://pypi.org/project/mysql-connector-python/)  
 > MySQL接続に使用  
 ### [os](https://docs.python.org/ja/3/library/os.html)
@@ -30,11 +33,13 @@
 ### [requests](https://pypi.org/project/requests/)
 > WebAPIデータ取得時に使用  
 ### [pandas](https://pypi.org/project/pandas/)
-> 一日の待ち時間データをcsvファイルに書き出す際に使用
+> 一日の待ち時間データをcsvファイルに書き出す際に使用  
 ### [matplotlib](https://pypi.org/project/matplotlib/)
-> 待ち時間変化のグラフをプロットする際に使用
-### [io](https://pypi.org/project/pandas/)
-> グラフの画像データを扱う際に使用
+> 待ち時間変化のグラフをプロットする際に使用  
+### [sys](https://docs.python.org/ja/3/library/sys.html)  
+> matplotlibのラベルタイトルの日本語化を行う際,絶対パスを調べるために使用  
+### [io](https://docs.python.org/ja/3/library/io.html)
+> グラフの画像データを扱う際に使用  
 ## サードパーティライブラリのインストール
 ```
 $ pip install mysql-connector-python
