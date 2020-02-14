@@ -1,4 +1,4 @@
-mport mysql.connector,copy,datetime,Query
+import mysql.connector,copy,datetime,Query
 from sshtunnel import SSHTunnelForwarder
 
 def Get_Data(ID):
