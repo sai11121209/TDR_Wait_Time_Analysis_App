@@ -1,7 +1,6 @@
 #MySQL/SSL_Connector
-import mysql.connector,os,time,Query,CSV_Writer
+import mysql.connector,os,time,Query,CSV_Writer,API_Download_Data
 from sshtunnel import SSHTunnelForwarder
-from Download_Data import Download_Data
 from Get_Time import Get_Time
 from Print_Data import Print_Data
 
@@ -35,23 +34,28 @@ while(1):
             print('MySQL:'+str(db.is_connected()))
             db.ping(reconnect=True)
             cursor = db.cursor(named_tuple=True)
-            datas = Download_Data()
+            #datas = API_Download_Data.Fac_det_Data_Get()
             #for data in datas:
                 #sql = Query.In_Fac_List(data)
-                #print(sql)
                 #cursor.execute(sql)
                 #db.commit()
+            datas = API_Download_Data.Fac_Inf_Data_Get()
             for data in datas:
-                if len(data.get_standby_time()) == 0:
-                    if len(data.get_operating_status()) == 1:
+                if data['standbyTimeDisplayType'] == 'HIDE':
+                    if 'facilityStatusMessage' in data:
                         sql = Query.In_FacID_Only(data)
                     else:
-                        sql = Query.In_Fac_Sta_Only(data)
-                else:
-                    if len(data.get_operating_status()) == 1:
-                        sql = Query.In_Fac_WT_Only(data)
+                        sql = Query.In_FacID_Only_F(data)
+                elif data['standbyTimeDisplayType'] == 'NORMAL':
+                    if 'fastPassStatus' in data:
+                        if data['fastPassStatus'] == 'TICKETING':
+                            sql = Query.In_All_T(data)
+                        else:
+                            sql = Query.In_All_E(data)
                     else:
-                        sql = Query.In_All(data)
+                        sql = Query.In_Fac_WT_Only(data)
+                else:
+                    sql = Query.In_Fac_Sta_Only(data)
                 print(sql,end='')
                 cursor.execute(sql)
                 print('ok')

@@ -10,7 +10,7 @@ class MyClass(ui.View):
         self.sitepath = [s for s in sys.path if s.endswith('Documents/site-packages')]
         self.fp = FontProperties(fname = f"{self.sitepath[0]}/ipaexg.ttf", size = 14)
         self.waittime = waittime
-        self.waittime.reverse()
+        self.waittime
         self.date = date2num(date)
         self.Avg = Avg
         self.title = name

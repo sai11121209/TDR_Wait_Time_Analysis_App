@@ -37,6 +37,17 @@ class MyTableView(object):
 class SubTableView(object):
     def __init__(self,facility):
         self.facility = facility
+        self.list = ['運営情報:'+str(self.facility['op_status'])]
+        if self.facility['op_status'] != '運営・公演中止':
+            self.list.append('営業時間:'+str(self.facility['op_s'])[:-3]+'~'+str(self.facility['op_e'])[:-3])
+            if self.facility['op_status'] != '案内終了' and self.facility['op_status'] != 'ファストパスエントランスのみ案内中':
+                self.list.append('今日の待ち時間平均:'+str(int(self.facility['average']))+'分')
+                self.list.append('現在の待ち時間:'+str(self.facility['waittime'])+'分')
+                if self.facility['fp_status'] != None:
+                    self.list.append('ファストパス情報:'+str(self.facility['fp_status']))
+                    self.list.append('ファストパス開始時刻:'+str(self.facility['fp_s'])[:-3])
+                    self.list.append('ファストパス終了時刻:'+str(self.facility['fp_e'])[:-3])
+        self.list.append('更新時刻:'+str(self.facility['time']))
         self.tv = ui.TableView()
         self.tv.delegate = self
         self.tv.data_source = self
@@ -52,18 +63,14 @@ class SubTableView(object):
         return 1
 
     def tableview_number_of_rows(self, tableview, section):
-        return len(self.facility)
+        return len(self.list)
 
     def tableview_cell_for_row(self, tableview, section, row):
         cell = ui.TableViewCell()
-        if self.count is 0:
-            cell.text_label.text = '今日の待ち時間平均:'+str(int(self.facility['average']))+'分'
-        if self.count is 1:
-            cell.text_label.text = '現在の待ち時間:'+str(self.facility['waittime'])+'分'
-        if self.count is 2:
-            cell.text_label.text = '更新時刻:'+str(self.facility['time'])
-        self.count = self.count + 1
+        cell.text_label.text = self.list[row]
         return cell
 
+
+MyTableView()
 
 MyTableView()

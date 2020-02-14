@@ -1,7 +1,7 @@
 import mysql.connector,copy,datetime,Query
 from sshtunnel import SSHTunnelForwarder
 
-def Get_Data():
+def Get_Data(ID):
     with SSHTunnelForwarder(
         ("saichann.shop", 22),
         ssh_username="saichann",
@@ -22,50 +22,21 @@ def Get_Data():
         print('MySQL:'+str(db.is_connected()))
         db.ping(reconnect=True)
         cursor = db.cursor(named_tuple=False)
-        datas = []
-        data = {'ID':None,'name':None,'average':None,'waittime':None,'time':None}
-        facdatadic = {}
-        infdatadic = {'waittime':[],'time':[]}
-        cursor.execute(Query.Sel_Wait_Time_Avg())
+        cursor.execute(Query.Sel_All_Wait_Time(ID))
         rows = cursor.fetchall()
-        n = 0
+        waittime,date = [],[]
         for row in rows:
-            datas.append(copy.deepcopy(data))
-            datas[n]['ID'] = row[0]
-            #facdatadic.setdefault(row[0])
-            #facdatadic[row[0]] = copy.deepcopy(infdatadic)
-            datas[n]['name'] = row[1]
-            datas[n]['average'] = row[2]
-            n = n + 1
-        times = []
-        cursor.execute(Query.Sel_TDL_Operating_Status())
-        times.append(cursor.fetchone())
-        cursor.execute(Query.Sel_TDS_Operating_Status())
-        times.append(cursor.fetchone())
-        cursor.execute(Query.Sel_Wait_Time_Latest())
-        rows = cursor.fetchall()
-        n = 0
-        for row in rows:
-            datas[n]['waittime'] = row[1]
-            datas[n]['time'] = row[2]
-            n = n + 1
-        ##新規
-        #cursor.execute(Query.Sel_All_Wait_Time())
-        #rows = cursor.fetchall()
-        #for row in rows:
-            #if row[0] != None and row[0] != '終日中止':
-                #facdatadic[row[2]]['waittime'].append(int(row[0]))
-            #else:
-                #facdatadic[row[2]]['waittime'].append(0)
-            #facdatadic[row[2]]['time'].append(row[1])
-        #print(facdatadic)
-        ##終わり
+            if row[0] != None and row[0] != '終日中止':
+                waittime.append(int(row[0]))
+            else:
+                waittime.append(0)
+            date.append(row[1])
         cursor.close()
         print('MySQL:Disconnected')
         db.close()
         server.stop()
         print('SSL:Close')
-    return datas,times
+    return waittime,date
 
 if __name__ == '__main__':
     pass
