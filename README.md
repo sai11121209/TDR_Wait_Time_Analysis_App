@@ -9,6 +9,8 @@
 ![](https://img.shields.io/pypi/v/matplotlib?label=matplotlib)
 ![](https://img.shields.io/github/issues/sai11121209/TDR_WaitingTime_Measurement_App)  
 バッチで遊んでみました.
+## 最新情報
+本日2020/2/15のAPIデータを丸一日取得し動作テストを行います.(添付画像も更新します。)
 ## 内容
 東京ディズニーリゾートでのアトラクション混雑を少しでも減らせるように一日の待ち時間の流れ瞬時に可視化し,現在そのアトラクションが空いているのか,混雑しているのか判断することのできるアプリを到達点に開発中です.
 ### 実装済み機能
