@@ -46,7 +46,6 @@ def Get_Data():
         times.append(cursor.fetchone())
         cursor.execute(Query.Sel_TDS_Operating_Status())
         times.append(cursor.fetchone())
-        print(times)
         cursor.execute(Query.Sel_Wait_Time_Latest())
         rows = cursor.fetchall()
         n = 0
