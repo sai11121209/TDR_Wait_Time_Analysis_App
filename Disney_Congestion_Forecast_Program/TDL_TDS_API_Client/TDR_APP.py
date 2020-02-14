@@ -72,5 +72,3 @@ class SubTableView(object):
 
 
 MyTableView()
-
-MyTableView()
