@@ -30,3 +30,6 @@ def CSV_Writer(cursor,Time):
     df.sort_index(axis=0, ascending=True, inplace=True)
     print(df)
     df.T.to_csv(dr+Date+'.csv')
+
+if __name__ == "__main__":
+    pass

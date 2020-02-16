@@ -34,12 +34,6 @@ def Get_Data():
             datas[n]['ID'] = row[0]
             datas[n]['name'] = row[1]
             datas[n]['average'] = row[2]
-            datas[n]['op_status'] = row[3]
-            datas[n]['op_s'] = row[4]
-            datas[n]['op_e'] = row[5]
-            datas[n]['fp_status'] = row[6]
-            datas[n]['fp_s'] = row[7]
-            datas[n]['fp_e'] = row[8]
             n += 1
         times = []
         cursor.execute(Query.Sel_TDL_Operating_Status())
@@ -52,8 +46,15 @@ def Get_Data():
         for row in rows:
             datas[n]['waittime'] = row[1]
             datas[n]['time'] = row[2]
+            datas[n]['op_status'] = row[3]
+            datas[n]['op_s'] = row[4]
+            datas[n]['op_e'] = row[5]
+            datas[n]['fp_status'] = row[6]
+            datas[n]['fp_s'] = row[7]
+            datas[n]['fp_e'] = row[8]
             n = n + 1
-        ##新規
+        datas.sort(key=lambda x:x['name'])
+        ##新規今後追加部
         #cursor.execute(Query.Sel_All_Wait_Time())
         #rows = cursor.fetchall()
         #for row in rows:

@@ -33,3 +33,6 @@ if check_a == 'y':
             db.close()
             server.stop()
             print('taskcomplete')
+
+if __name__ == "__main__":
+    pass

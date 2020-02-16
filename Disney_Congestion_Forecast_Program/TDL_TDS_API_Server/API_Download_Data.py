@@ -8,3 +8,6 @@ def Fac_det_Data_Get():
 def Fac_Inf_Data_Get():
     datas = API.Get_API_Fac_Inf()
     return datas
+    
+if __name__ == "__main__":
+    pass

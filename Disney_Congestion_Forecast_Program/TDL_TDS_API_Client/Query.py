@@ -1,11 +1,11 @@
 #TDL営業時間取得
 def Sel_TDL_Operating_Status():
-    sql = 'SELECT Operating_Status,Operating_Status_Start,Operating_Status_End FROM Standby_Time WHERE Facility_Code = 194;'
+    sql = 'SELECT Operating_Status,Operating_Status_Start,Operating_Status_End,MAX(Date) FROM Standby_Time WHERE Facility_Code = 194;'
     return sql
 
 #TDS営業時間取得
 def Sel_TDS_Operating_Status():
-    sql = 'SELECT Operating_Status,Operating_Status_Start,Operating_Status_End FROM Standby_Time WHERE Facility_Code = 235;' 
+    sql = 'SELECT Operating_Status,Operating_Status_Start,Operating_Status_End,MAX(Date) FROM Standby_Time WHERE Facility_Code = 235;' 
     return sql
 
 #全待ち時間取得
@@ -22,14 +22,10 @@ def Sel_All_Wait_Time(ID):
 #待ち時間平均取得
 #ここの記述追記
 def Sel_Wait_Time_Avg():
-    sql = 'SELECT Standby_Time.Facility_Code,Facility.Facility_Name,AVG(Standby_Time.Standby_Time),Standby_Time.Operating_Status,Standby_Time.Operating_Status_Start,Standby_Time.Operating_Status_End,Standby_Time.Facility_Fastpass_Status,Standby_Time.Facility_Fastpass_Start,Standby_Time.Facility_Fastpass_End FROM Facility inner join Standby_Time ON Facility.Facility_Code = Standby_Time.Facility_Code group by Facility.Facility_Name;'
+    sql = 'SELECT Standby_Time.Facility_Code,Facility.Facility_Name,AVG(Standby_Time.Standby_Time) FROM Facility inner join Standby_Time ON Facility.Facility_Code = Standby_Time.Facility_Code group by Facility.Facility_Name ORDER BY Standby_Time.Facility_Code ASC;'
     return sql
 
 #最新待ち時間取得
-##訂正部分
 def Sel_Wait_Time_Latest():
-    #sql = 'SELECT DataA.Facility_Name,DataA.Standby_Time.Standby_Time,DataA.Standby_Time.Date FROM Facility AS FacilityA,Standby_Time AS Standby_TimeA INNER JOIN (SELECT Facility.Facility_Name,MAX(Standby_Time.Date) AS MAXDate FROM Facility,Standby_Time GROUP BY Facility.Facicility_Name) AS DataB ON DataA.Facility.Facility_Name = DataB.Facility.Facility_Name AND DataA.Standby_Time.Date = DataB.Standby_Time.MAXDate;'
-    #sql = 'SELECT  Facility.Facility_Name,Standby_Time.Standby_Time,Standby_Time.Date FROM Facility,Standby_Time AS DATA (SELECT DATAA.Facility_Name,DATAA.Stadby_Time,DATAA.Date FROM DATA AS DATAA) INNER JOIN (SELECT DATA.Facility_Name,MAX(DATA.Date) AS MAXDate FROM DATA GROUP BY DATA.Facility_Name)AS DATAB ON DATAA.Facility_Name = DATAB.Facility_Name AND DATAA.Date = DATAB.MAXDate;'
-    #sql = 'SELECT * FROM Facility,Standby_Time AS data WHERE =(SELECT MAX(data.Date) FROM Facility,Standby_Time WHERE data.ID = data.ID)'
-    sql = 'SELECT Facility.Facility_Name,Standby_Time.Standby_Time,MAX(Standby_Time.Date) FROM saichann.Facility inner join saichann.Standby_Time ON Facility.Facility_Code = Standby_Time.Facility_Code group by Facility.Facility_Name;'
+    sql = 'SELECT Standby_TimeA.Facility_Code,Standby_TimeA.Standby_Time,Standby_TimeA.Date,Standby_TimeA.Operating_Status,Standby_TimeA.Operating_Status_Start,Standby_TimeA.Operating_Status_End,Standby_TimeA.Facility_FastPass_Status,Standby_TimeA.Facility_FastPass_Start,Standby_TimeA.Facility_FastPass_End FROM saichann.Standby_Time AS Standby_TimeA INNER JOIN (SELECT Facility_Code, MAX(Date) AS MaxDate FROM saichann.Standby_Time GROUP BY Facility_Code) AS Standby_TimeB ON Standby_TimeA.Facility_Code = Standby_TimeB.Facility_Code AND Standby_TimeA.Date = Standby_TimeB.MaxDate ORDER BY Standby_TimeA.Facility_Code ASC;'
     return sql

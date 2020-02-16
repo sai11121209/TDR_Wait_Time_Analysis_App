@@ -1,9 +1,10 @@
-import ui,console,APP_Plot,SQL_Connector_PLT
-from SQL_Connector import *
+import ui,console,APP_Plot,API_List
+import SQL_Connector_PLT as SCP
+import SQL_Connector as SC
 
 class MyTableView(object):
     def __init__(self):
-        self.list,self.time = Get_Data()
+        self.list,self.time = SC.Get_Data()
         self.tv = ui.TableView()
         if len(self.list) == 0:
             self.tv.name = '閉園中'
@@ -37,6 +38,7 @@ class MyTableView(object):
 class SubTableView(object):
     def __init__(self,facility):
         self.facility = facility
+        self.data = API_List.Get_API_Fac_Inf()
         self.list = ['運営情報:'+str(self.facility['op_status'])]
         if self.facility['op_status'] != '運営・公演中止':
             self.list.append('営業時間:'+str(self.facility['op_s'])[:-3]+'~'+str(self.facility['op_e'])[:-3])
@@ -45,8 +47,9 @@ class SubTableView(object):
                 self.list.append('現在の待ち時間:'+str(self.facility['waittime'])+'分')
                 if self.facility['fp_status'] != None:
                     self.list.append('ファストパス情報:'+str(self.facility['fp_status']))
-                    self.list.append('ファストパス開始時刻:'+str(self.facility['fp_s'])[:-3])
-                    self.list.append('ファストパス終了時刻:'+str(self.facility['fp_e'])[:-3])
+                    if self.facility['fp_status'] == '発行中':
+                        self.list.append('ファストパス開始時刻:'+str(self.facility['fp_s'])[:-3])
+                        self.list.append('ファストパス終了時刻:'+str(self.facility['fp_e'])[:-3])
         self.list.append('更新時刻:'+str(self.facility['time']))
         self.tv = ui.TableView()
         self.tv.delegate = self
@@ -55,7 +58,7 @@ class SubTableView(object):
     
     def tableview_did_select(self, tableview, section, row):
         if row != 2:
-            tv = APP_Plot.MyClass(SQL_Connector_PLT.Get_Data(self.facility['ID'])[0],SQL_Connector_PLT.Get_Data(self.facility['ID'])[1],int(self.facility['average']),self.facility['name'])
+            tv = APP_Plot.MyClass(SCP.Get_Data(self.facility['ID'])[0],SCP.Get_Data(self.facility['ID'])[1],int(self.facility['average']),self.facility['name'])
             tv.name = '待ち時間変化グラフ'
             tableview.navigation_view.push_view(tv)
             
@@ -70,7 +73,5 @@ class SubTableView(object):
         cell.text_label.text = self.list[row]
         return cell
 
-
-MyTableView()
 
 MyTableView()

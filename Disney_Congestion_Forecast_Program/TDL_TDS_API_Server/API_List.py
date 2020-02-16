@@ -1,6 +1,5 @@
 import requests as rq
 
-#url = 'https://api-portal.tokyodisneyresort.jp/rest/v1/external-site-urls'
 headers = {
     "Host": "api-portal.tokyodisneyresort.jp",
     "X-PORTAL-DEVICE-ID": "OWNlNjIwT/EFcUXy8B9esqO2oh0JN7Rl0xIBYOvLCxgTPc8VuQi8Zosvw3OTfZKdGLZ/4mRAs3mgz8yuTuZdTvBtu2X/Rg==",
@@ -28,3 +27,6 @@ def Get_API_Fac_Inf():
     url = 'https://api-portal.tokyodisneyresort.jp/rest/v2/facilities/conditions'
     datas = rq.get(url,headers=headers).json()
     return datas['attractions']
+
+if __name__ == "__main__":
+    pass
