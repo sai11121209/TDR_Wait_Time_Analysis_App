@@ -79,6 +79,9 @@ $ pip install matplotlib
 1. その日の待ち時間をグラフで表示
 ## csvファイル書き出し
 <img src="CSV書き出し画像.jpg" width=100%><br>閉園時に書き出されたファイルcsvです<br>
+```
+/Disney_Congestion_Forecast_Program/TDL_TDS_Wait_Time_List/2020_02_18.csv
+```
 ## Pythonista3実行画面
 ### 開園時実行画面
 <img src="開園時実行画面.jpg" width=30%><br>アプリ起動直後の画面  
