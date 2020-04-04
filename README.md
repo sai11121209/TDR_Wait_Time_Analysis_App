@@ -1,4 +1,4 @@
-# 東京ディズニーリゾート待ち時間測定アプリ
+# 東京ディズニーリゾート待ち時間解析アプリ
 ![](https://img.shields.io/badge/Pyhton-3.7.8-4169e1.svg)
 ![](https://img.shields.io/badge/Pyhtonista3-3.2-00fa9a.svg)
 ![](https://img.shields.io/badge/MySQL-5.7.27-4169e1.svg)
